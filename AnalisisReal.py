@@ -1394,7 +1394,7 @@ def materi1():
     <iframe src=' https://martin-bernard26.github.io/simulasiCauchy/tugas.html' style="width:100%; height:1500px; border:none;">
     </iframe>
     """
-    st.components.v1.html(tulisanHTML5,height=3000)
+    st.components.v1.html(tulisanHTML5,height=1000)
 #==========Materi++++++
 
 if st.session_state['kumpulan']['pendahuluan']:
@@ -1414,4 +1414,5 @@ if st.sidebar.button("Pertemuan 1"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'pertemuan1':True,
                         'pertemuan2':False,'pertemuan3':False}
     st.rerun()
+
 
