@@ -869,7 +869,7 @@ def materi1():
         <iframe src=' https://martin-bernard26.github.io/simulasiCauchy/soaldiagreal1.html' style="width:100%; height:1500px; border:none;">
         </iframe>
         """
-        st.components.v1.html(tulisanHTML3,height=1000)
+        st.components.v1.html(tulisanHTML3,height=2000)
     st.subheader("A. Konstruksi Dasar: Dari Rasional ke Desimal")
     st.markdown(" ##### Secara deduktif, kita berangkat dari fakta bahwa setiap bilangan real x dapat dinyatakan dalam bentuk:")
     st.latex("x= a_{0},a_{1}a_{2}a_{3}\dots")
@@ -1414,6 +1414,7 @@ if st.sidebar.button("Pertemuan 1"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'pertemuan1':True,
                         'pertemuan2':False,'pertemuan3':False}
     st.rerun()
+
 
 
 
