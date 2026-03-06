@@ -32,7 +32,7 @@ def kover():
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    width:auto;
+    width:100%;
     height: 1123px;
     overflow: hidden;
     font-family: 'Crimson Pro', serif;
@@ -1414,6 +1414,7 @@ if st.sidebar.button("Pertemuan 1"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'pertemuan1':True,
                         'pertemuan2':False,'pertemuan3':False}
     st.rerun()
+
 
 
 
