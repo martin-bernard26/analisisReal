@@ -1,9 +1,11 @@
 import streamlit as st
-
+import requests
+import time
+from datetime import datetime
 
 st.set_page_config(layout="wide")
 if 'kumpulan' not in st.session_state:
-    st.session_state['kumpulan'] = {'pendahuluan':True,'pertemuan1':False,
+    st.session_state['kumpulan'] = {'pendahuluan':True,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False}
 
 #======definisi+++++++++
@@ -32,7 +34,7 @@ def kover():
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    width:100%;
+    width:auto;
     height: 1123px;
     overflow: hidden;
     font-family: 'Crimson Pro', serif;
@@ -40,7 +42,7 @@ def kover():
   }
 
   .page {
-    width: 794px;
+    width: 100%;
     height: 1123px;
     position: relative;
     background: var(--deep-blue);
@@ -869,7 +871,7 @@ def materi1():
         <iframe src=' https://martin-bernard26.github.io/simulasiCauchy/soaldiagreal1.html' style="width:100%; height:1500px; border:none;">
         </iframe>
         """
-        st.components.v1.html(tulisanHTML3,height=2000)
+        st.components.v1.html(tulisanHTML3,height=1000)
     st.subheader("A. Konstruksi Dasar: Dari Rasional ke Desimal")
     st.markdown(" ##### Secara deduktif, kita berangkat dari fakta bahwa setiap bilangan real x dapat dinyatakan dalam bentuk:")
     st.latex("x= a_{0},a_{1}a_{2}a_{3}\dots")
@@ -1389,33 +1391,689 @@ def materi1():
     <iframe src=' https://martin-bernard26.github.io/simulasiCauchy/contohsoal1.html' style="width:100%; height:1500px; border:none;">
     </iframe>
     """
-    st.components.v1.html(tulisanHTML3,height=1500)
+    st.components.v1.html(tulisanHTML3,height=3000)
     tulisanHTML5 = """
     <iframe src=' https://martin-bernard26.github.io/simulasiCauchy/tugas.html' style="width:100%; height:1500px; border:none;">
     </iframe>
     """
     st.components.v1.html(tulisanHTML5,height=1000)
+
+def materi2():
+    bagian = st.tabs(['test diagnosa','Materi dan latihan','Referensi'])
+    with bagian[0]:
+        FORM_ACTION_URL = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdFbLvcyZnwUAA-QezDIN589jKN1sLL_gr_afX1UuPc_HtZRw/formResponse"
+ 
+        ENTRY = {
+    "nama":       "entry.2079486621",   # Nama Lengkap
+    "nim":        "entry.217329210",   # NIM / Kode Mahasiswa
+    "waktu":      "entry.1575527149",   # Waktu pengerjaan (auto)
+    "durasi":     "entry.1792382505",   # Durasi pengerjaan (auto)
+    "j1":         "entry.446929005",   # Jawaban Soal 1
+    "j2":         "entry.1883968956",
+    "j3":         "entry.1057599819",
+    "j4":         "entry.239741653",
+    "j5":         "entry.2068907983",
+    "j6":         "entry.1016098720",
+    "j7":         "entry.604854740",
+    "j8":         "entry.1414322124",
+    "j9":         "entry.453948995",
+    "j10":        "entry.1621436441",   # Jawaban Soal 10
+}
+ 
+# ─────────────────────────────────────────────
+    # CSS KUSTOM — Estetika Academic Dark
+    # ─────────────────────────────────────────────
+        st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,300&family=JetBrains+Mono:wght@400;600&display=swap');
+ 
+:root {
+    --ink: #1a1208;
+    --parchment: #f5efe0;
+    --sienna: #8b3a0f;
+    --gold: #c4922a;
+    --gold-light: #e8c97a;
+    --slate: #3d4f5c;
+    --sage: #4a6741;
+    --border: #c9b88a;
+    --cream: #faf6ed;
+}
+ 
+/* Global */
+html, body, [class*="css"] {
+    font-family: 'Source Serif 4', Georgia, serif;
+    color: var(--ink);
+}
+ 
+/* Header utama */
+.main-header {
+    background: #1a1208;
+    border-radius: 10px;
+    padding: 2rem 2rem 1.6rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
+.main-header::before {
+    content: 'ℝ';
+    position: absolute;
+    right: 1.5rem; top: 50%;
+    transform: translateY(-50%);
+    font-size: 5rem;
+    opacity: 0.06;
+    font-family: 'Playfair Display', serif;
+    color: #e8c97a;
+    pointer-events: none;
+}
+.main-header .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #e8c97a;
+    opacity: 0.8;
+    margin-bottom: 0.5rem;
+}
+.main-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: #f5efe0;
+    line-height: 1.2;
+    margin: 0;
+}
+.main-header .sub {
+    font-size: 0.9rem;
+    color: rgba(245,239,224,0.6);
+    font-style: italic;
+    margin-top: 0.4rem;
+}
+ 
+/* Card soal */
+.soal-card {
+    background: #faf6ed;
+    border: 1.5px solid #c9b88a;
+    border-left: 4px solid #8b3a0f;
+    border-radius: 8px;
+    padding: 1.2rem 1.4rem 0.8rem;
+    margin-bottom: 1.2rem;
+}
+.soal-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #8b3a0f;
+    margin-bottom: 0.4rem;
+}
+.soal-text {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: #1a1208;
+    margin-bottom: 0.3rem;
+}
+.math-tag {
+    font-family: 'JetBrains Mono', monospace;
+    background: rgba(139,58,15,0.1);
+    color: #7a2f08;
+    padding: 0.12em 0.4em;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+ 
+/* Info box */
+.info-box {
+    background: #f0f5ff;
+    border-left: 3px solid #1e3a5f;
+    border-radius: 0 6px 6px 0;
+    padding: 0.8rem 1rem;
+    margin: 0.8rem 0;
+    font-size: 0.88rem;
+    color: #1e3a5f;
+}
+ 
+/* Progress */
+.progress-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: #3d4f5c;
+    margin-bottom: 0.3rem;
+    letter-spacing: 0.08em;
+}
+ 
+/* Footer */
+.footer {
+    text-align: center;
+    font-size: 0.78rem;
+    color: rgba(26,18,8,0.4);
+    font-style: italic;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid #c9b88a;
+}
+ 
+/* Streamlit tweaks */
+div[data-testid="stRadio"] > label {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.95rem;
+}
+div[data-testid="stTextInput"] input,
+div[data-testid="stTextArea"] textarea {
+    font-family: 'Source Serif 4', serif;
+    font-size: 0.95rem;
+}
+.stButton > button {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: all 0.15s;
+}
+</style>
+""", unsafe_allow_html=True)
+ 
+# ─────────────────────────────────────────────
+# BANK SOAL — 10 Soal Diagnosa
+# type: 'pilihan' atau 'isian'
+# ─────────────────────────────────────────────
+        SOAL = [
+            {
+        "no": 1,
+        "topik": "Sifat Aljabar — Aksioma Lapangan",
+        "tipe": "pilihan",
+        "pertanyaan": (
+            "Manakah pernyataan berikut yang merupakan aksioma lapangan (field axiom) "
+            "dari ℝ yang paling tepat mendeskripsikan sifat invers perkalian?"
+        ),
+        "pilihan": [
+            "A. Untuk setiap a ∈ ℝ, terdapat (−a) ∈ ℝ sehingga a + (−a) = 0",
+            "B. Untuk setiap a ∈ ℝ dengan a ≠ 0, terdapat a⁻¹ ∈ ℝ sehingga a · a⁻¹ = 1",
+            "C. Untuk setiap a, b ∈ ℝ, berlaku a · b = b · a",
+            "D. Terdapat 1 ∈ ℝ sedemikian sehingga a · 1 = a untuk semua a ∈ ℝ",
+        ],
+    },
+    {
+        "no": 2,
+        "topik": "Sifat Aljabar — Teorema Turunan",
+        "tipe": "pilihan",
+        "pertanyaan": (
+            "Pernyataan berikut dapat dibuktikan dari aksioma lapangan. "
+            "Manakah langkah pembuktian yang tepat untuk menunjukkan bahwa a · 0 = 0 untuk semua a ∈ ℝ?"
+        ),
+        "pilihan": [
+            "A. Gunakan langsung aksioma identitas perkalian M4 karena 0 adalah identitas",
+            "B. Tulis 0 = 0 + 0, distribusikan: a·0 = a·(0+0) = a·0 + a·0, lalu gunakan hukum pembatalan",
+            "C. Karena 0 adalah elemen paling kecil di ℝ, maka perkalian dengan 0 selalu menghasilkan 0",
+            "D. Gunakan aksioma O3 (tertutup terhadap perkalian) pada bilangan positif",
+        ],
+    },
+    {
+        "no": 3,
+        "topik": "Sifat Aljabar — Sifat Distributif",
+        "tipe": "pilihan",
+        "pertanyaan": (
+            "Seorang mahasiswa ingin membuktikan bahwa −(a + b) = (−a) + (−b) untuk semua a, b ∈ ℝ. "
+            "Strategi pembuktian yang paling tepat adalah…"
+        ),
+        "pilihan": [
+            "A. Tunjukkan bahwa (−a) + (−b) memenuhi definisi invers penjumlahan dari (a + b), yaitu (a+b) + ((−a)+(−b)) = 0",
+            "B. Langsung substitusi nilai numerik untuk memeriksa kebenarannya",
+            "C. Gunakan aksioma trikotomi karena semua kasus tanda sudah tercakup",
+            "D. Kalikan kedua ruas dengan (−1) lalu gunakan aksioma komutatif",
+        ],
+    },
+    {
+        "no": 4,
+        "topik": "Sifat Aljabar — Tidak Ada Pembagi Nol",
+        "tipe": "pilihan",
+        "pertanyaan": (
+            "Misalkan a, b ∈ ℝ dan diketahui a · b = 0. "
+            "Pernyataan manakah yang pasti benar berdasarkan teorema lapangan?"
+        ),
+        "pilihan": [
+            "A. a = 0 dan b = 0 (keduanya harus nol)",
+            "B. a = 0 atau b = 0 (paling sedikit satu di antara keduanya nol)",
+            "C. a · b = 0 hanya mungkin jika a = b",
+            "D. Tidak dapat disimpulkan apapun tanpa informasi tambahan",
+        ],
+    },
+    {
+        "no": 5,
+        "topik": "Sifat Urutan — Aksioma & Trikotomi",
+        "tipe": "pilihan",
+        "pertanyaan": (
+            "Aksioma trikotomi pada bilangan real menyatakan bahwa untuk setiap a, b ∈ ℝ, "
+            "tepat satu dari kondisi berikut berlaku. Kondisi tersebut adalah…"
+        ),
+        "pilihan": [
+            "A. a < b,  a ≤ b,  atau  a ≥ b",
+            "B. a < b,  a = b,  atau  a > b",
+            "C. a ≤ b  atau  a > b  (dua kemungkinan)",
+            "D. a + b > 0,  a + b = 0,  atau  a + b < 0",
+        ],
+    },
+    {
+        "no": 6,
+        "topik": "Sifat Urutan — Perkalian Bilangan Negatif",
+        "tipe": "pilihan",
+        "pertanyaan": (
+            "Diketahui a < b dan c < 0. Berdasarkan sifat urutan lapangan terurut, "
+            "manakah pernyataan yang benar?"
+        ),
+        "pilihan": [
+            "A. ac < bc  (tanda urutan tetap saat dikali c negatif)",
+            "B. ac > bc  (tanda urutan berbalik saat dikali bilangan negatif)",
+            "C. ac = bc  (perkalian dengan nilai sama menghasilkan nilai sama)",
+            "D. Tidak ada hubungan urutan yang dapat disimpulkan",
+        ],
+    },
+    {
+        "no": 7,
+        "topik": "Sifat Urutan — Kuadrat Non-negatif",
+        "tipe": "pilihan",
+        "pertanyaan": (
+            "Dari aksioma urutan bilangan real, dapat dibuktikan bahwa a² ≥ 0 untuk semua a ∈ ℝ. "
+            "Konsekuensi langsung dari teorema ini adalah…"
+        ),
+        "pilihan": [
+            "A. Bilangan negatif tidak memiliki akar kuadrat di ℝ  (karena a² ≥ 0 selalu)",
+            "B. Setiap bilangan real adalah bilangan kuadrat",
+            "C. Kuadrat dua bilangan yang berbeda selalu berbeda",
+            "D. Perkalian dua bilangan negatif adalah negatif",
+        ],
+    },
+    {
+        "no": 8,
+        "topik": "Nilai Mutlak — Ketaksamaan Segitiga",
+        "tipe": "pilihan",
+        "pertanyaan": (
+            "Ketaksamaan segitiga menyatakan |a + b| ≤ |a| + |b| untuk semua a, b ∈ ℝ. "
+            "Kapan kesamaan |a + b| = |a| + |b| berlaku?"
+        ),
+        "pilihan": [
+            "A. Selalu berlaku untuk semua a, b ∈ ℝ",
+            "B. Ketika a = b",
+            "C. Ketika a · b ≥ 0  (a dan b bertanda sama atau salah satunya nol)",
+            "D. Ketika a dan b keduanya bilangan bulat",
+        ],
+    },
+    {
+        "no": 9,
+        "topik": "Sifat Urutan — Densitas ℝ",
+        "tipe": "isian",
+        "pertanyaan": (
+            "Teorema densitas bilangan real menyatakan: jika a < b, maka terdapat c ∈ ℝ "
+            "dengan a < c < b. Sebutkan satu konstruksi eksplisit nilai c tersebut "
+            "(nyatakan dalam a dan b) dan jelaskan secara singkat mengapa c memenuhi a < c < b!"
+        ),
+    },
+    {
+        "no": 10,
+        "topik": "Sifat Aljabar & Urutan — Analisis Mendalam",
+        "tipe": "isian",
+        "pertanyaan": (
+            "Diketahui a ∈ ℝ dengan 0 < a < 1. "
+            "Buktikan atau jelaskan mengapa a² < a dengan menggunakan sifat urutan "
+            "(sebutkan aksioma atau sifat urutan yang Anda gunakan pada setiap langkah)!"
+        ),
+    },
+]
+ 
+# ─────────────────────────────────────────────
+# SESSION STATE
+# ─────────────────────────────────────────────
+        if "halaman" not in st.session_state:
+            st.session_state.halaman = "identitas"
+        if "waktu_mulai" not in st.session_state:
+            st.session_state.waktu_mulai = None
+        if "jawaban" not in st.session_state:
+            st.session_state.jawaban = {}
+        if "submitted" not in st.session_state:
+            st.session_state.submitted = False
+ 
+# ─────────────────────────────────────────────
+# HEADER
+# ─────────────────────────────────────────────
+        st.markdown("""
+<div class="main-header">
+  <div class="label">Analisis Real · Tes Diagnosa</div>
+  <h1>Sifat Aljabar &amp; Sifat Urutan</h1>
+  <div class="sub">10 Soal Pilihan Ganda &amp; Isian · Tanpa Kunci Jawaban</div>
+</div>
+        """, unsafe_allow_html=True)
+ 
+# ─────────────────────────────────────────────
+# HALAMAN 1 — IDENTITAS MAHASISWA
+# ─────────────────────────────────────────────
+        if st.session_state.halaman == "identitas":
+            st.markdown("### 📋 Identitas Mahasiswa")
+            st.markdown("""
+    <div class="info-box">
+    Tes ini terdiri atas <strong>8 soal pilihan ganda</strong> dan <strong>2 soal isian singkat</strong>.
+    Kerjakan secara mandiri. Hasil akan dikirim otomatis ke sistem dosen setelah Anda menekan <em>Kirim Jawaban</em>.
+    </div>
+    """, unsafe_allow_html=True)
+ 
+            with st.form("form_identitas"):
+                nama = st.text_input("Nama Lengkap *", placeholder="Contoh: Martin Bernard")
+                nim  = st.text_input("NIM / Kode Mahasiswa *", placeholder="Contoh: 2201234567")
+                setuju = st.checkbox("Saya menyatakan akan mengerjakan tes ini secara jujur dan mandiri.")
+                mulai  = st.form_submit_button("▶  Mulai Tes", use_container_width=True)
+ 
+                if mulai:
+                    if not nama.strip():
+                        st.error("⚠️ Nama lengkap wajib diisi.")
+                    elif not nim.strip():
+                        st.error("⚠️ NIM wajib diisi.")
+                    elif not setuju:
+                        st.error("⚠️ Anda harus menyetujui pernyataan kejujuran akademik.")
+                    else:
+                        st.session_state.nama = nama.strip()
+                        st.session_state.nim  = nim.strip()
+                        st.session_state.waktu_mulai = datetime.now()
+                        st.session_state.halaman = "tes"
+                        st.rerun()
+ 
+# ─────────────────────────────────────────────
+# HALAMAN 2 — SOAL TES
+# ─────────────────────────────────────────────
+        elif st.session_state.halaman == "tes" and not st.session_state.submitted:
+ 
+            # Progress
+            dijawab = len(st.session_state.jawaban)
+            pct = int(dijawab / len(SOAL) * 100)
+            st.markdown(f'<div class="progress-label">Progress: {dijawab}/{len(SOAL)} soal dijawab ({pct}%)</div>', unsafe_allow_html=True)
+            st.progress(pct / 100)
+ 
+            st.markdown(f"""
+            <div style="font-size:0.85rem; color:#3d4f5c; margin-bottom:1.2rem; font-family:'JetBrains Mono',monospace;">
+            Peserta: <strong>{st.session_state.nama}</strong> &nbsp;|&nbsp; NIM: <strong>{st.session_state.nim}</strong>
+            </div>
+            """, unsafe_allow_html=True)
+ 
+            st.markdown("---")
+ 
+            # Render setiap soal
+            for s in SOAL:
+                no  = s["no"]
+                key = f"j{no}"
+ 
+                st.markdown(f"""
+                <div class="soal-card">
+                  <div class="soal-num">Soal {no} &mdash; {s['topik']}</div>
+                  <div class="soal-text">{s['pertanyaan']}</div>
+                </div>
+                """, unsafe_allow_html=True)
+ 
+                if s["tipe"] == "pilihan":
+                    default_idx = None
+                    if key in st.session_state.jawaban:
+                        try:
+                            default_idx = s["pilihan"].index(st.session_state.jawaban[key])
+                        except ValueError:
+                            default_idx = None
+ 
+                    jawaban = st.radio(
+                        label=f"Pilih jawaban untuk Soal {no}:",
+                        options=s["pilihan"],
+                        index=default_idx,
+                        key=f"radio_{no}",
+                        label_visibility="collapsed",
+                    )
+                    if jawaban:
+                            st.session_state.jawaban[key] = jawaban
+ 
+                else:  # isian
+                    default_val = st.session_state.jawaban.get(key, "")
+                    jawaban = st.text_area(
+                        label=f"Jawaban Soal {no}:",
+                        value=default_val,
+                        height=140,
+                        key=f"text_{no}",
+                        placeholder="Tuliskan jawaban dan penjelasan Anda di sini…",
+                        label_visibility="collapsed",
+                    )
+                    if jawaban.strip():
+                        st.session_state.jawaban[key] = jawaban.strip()
+ 
+                st.markdown("<div style='margin-bottom:0.5rem'></div>", unsafe_allow_html=True)
+ 
+            # Tombol kirim
+            st.markdown("---")
+            belum_dijawab = [s["no"] for s in SOAL if f"j{s['no']}" not in st.session_state.jawaban or not st.session_state.jawaban.get(f"j{s['no']}")]
+ 
+            if belum_dijawab:
+                st.warning(f"⚠️ Soal yang belum dijawab: {', '.join(map(str, belum_dijawab))}")
+ 
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                kirim = st.button(
+                    "✉  Kirim Jawaban ke Google Forms",
+                    use_container_width=True,
+                    type="primary",
+                    disabled=bool(belum_dijawab),
+                )
+            with col2:
+                reset = st.button("↺  Reset", use_container_width=True)
+ 
+            if reset:
+                for key in list(st.session_state.keys()):
+                    del st.session_state[key]
+                st.rerun()
+ 
+            if kirim and not belum_dijawab:
+                # Hitung durasi
+                selesai = datetime.now()
+                durasi_detik = int((selesai - st.session_state.waktu_mulai).total_seconds())
+                menit = durasi_detik // 60
+                detik = durasi_detik % 60
+ 
+                # Susun payload Google Forms
+                payload = {
+                    ENTRY["nama"]:   st.session_state.nama,
+                    ENTRY["nim"]:    st.session_state.nim,
+                    ENTRY["waktu"]:  selesai.strftime("%Y-%m-%d %H:%M:%S"),
+                    ENTRY["durasi"]: f"{menit} menit {detik} detik",
+                }
+                for s in SOAL:
+                    key = f"j{s['no']}"
+                    entry_key = ENTRY.get(key, "")
+                    if entry_key:
+                        payload[entry_key] = st.session_state.jawaban.get(key, "(tidak dijawab)")
+ 
+                # Kirim ke Google Forms
+                with st.spinner("Mengirim jawaban ke server…"):
+                    try:
+                        resp = requests.post(
+                            FORM_ACTION_URL,
+                            data=payload,
+                            timeout=10,
+                            headers={"Content-Type": "application/x-www-form-urlencoded"},
+                        )
+                        kirim_berhasil = resp.status_code in [200, 302]
+                    except Exception as e:
+                        kirim_berhasil = False
+                        st.session_state.error_msg = str(e)
+ 
+                st.session_state.durasi_str = f"{menit} menit {detik} detik"
+                st.session_state.kirim_berhasil = kirim_berhasil
+                st.session_state.submitted = True
+                st.rerun()
+ 
+# ─────────────────────────────────────────────
+# HALAMAN 3 — KONFIRMASI PENGIRIMAN
+# ─────────────────────────────────────────────
+        elif st.session_state.submitted:
+            berhasil = st.session_state.get("kirim_berhasil", False)
+ 
+            if berhasil:
+                st.success("✅ Jawaban berhasil dikirim ke Google Forms!")
+                st.balloons()
+            else:
+                st.warning("⚠️ Pengiriman ke Google Forms gagal atau URL Form belum dikonfigurasi.")
+                st.markdown("""
+        <div class="info-box">
+        <strong>Untuk instruktur:</strong> Pastikan <code>FORM_ACTION_URL</code> dan semua <code>ENTRY</code>
+        sudah diisi dengan benar dari Google Forms Anda.
+        Lihat bagian konfigurasi di bagian atas kode.
+        </div>
+        """, unsafe_allow_html=True)
+ 
+            st.markdown(f"""
+    <div style="background:#faf6ed;border:1.5px solid #c9b88a;border-radius:8px;padding:1.3rem 1.5rem;margin:1.2rem 0;">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;color:#8b3a0f;margin-bottom:0.6rem;">Ringkasan Pengerjaan</div>
+      <table style="width:100%;font-size:0.9rem;border-collapse:collapse;">
+        <tr><td style="padding:0.3rem 0;color:#3d4f5c;">Nama</td><td><strong>{st.session_state.nama}</strong></td></tr>
+        <tr><td style="padding:0.3rem 0;color:#3d4f5c;">NIM</td><td><strong>{st.session_state.nim}</strong></td></tr>
+        <tr><td style="padding:0.3rem 0;color:#3d4f5c;">Waktu Selesai</td><td><strong>{datetime.now().strftime('%d %B %Y, %H:%M')}</strong></td></tr>
+        <tr><td style="padding:0.3rem 0;color:#3d4f5c;">Durasi</td><td><strong>{st.session_state.get('durasi_str', '—')}</strong></td></tr>
+        <tr><td style="padding:0.3rem 0;color:#3d4f5c;">Soal Dijawab</td><td><strong>{len(st.session_state.jawaban)} / {len(SOAL)}</strong></td></tr>
+      </table>
+    </div>
+    """, unsafe_allow_html=True)
+ 
+            st.markdown("""
+    <div class="info-box">
+    Jawaban Anda telah tercatat. Hasil evaluasi akan disampaikan oleh dosen pada sesi berikutnya.
+    Tidak ada kunci jawaban yang ditampilkan di sini.
+    </div>
+    """, unsafe_allow_html=True)
+ 
+            if st.button("↺  Mulai Ulang (Peserta Baru)", use_container_width=True):
+                for key in list(st.session_state.keys()):
+                    del st.session_state[key]
+                st.rerun()
+ 
+# ─────────────────────────────────────────────
+# FOOTER
+# ─────────────────────────────────────────────
+        st.markdown("""
+<div class="footer">
+  Tes Diagnosa Analisis Real &mdash; Sifat Aljabar &amp; Sifat Urutan<br>
+  Dikembangkan untuk keperluan pembelajaran · Referensi: Bartle &amp; Sherbert, <em>Introduction to Real Analysis</em>, 4th ed.
+</div>
+""", unsafe_allow_html=True)
+        with bagian[1]:
+            tulisanHTML6 = """
+        <iframe src=' https://martin-bernard26.github.io/simulasiCauchy/analisisReal2.html' style="width:100%; height:1500px; border:none;">
+        </iframe>
+           """
+            st.components.v1.html(tulisanHTML6,height=1000)
+            with st.expander("Forum Diskusi"):
+                # URL Firebase Realtime Database
+                FIREBASE_URL = "https://vba-modul-diskusi-default-rtdb.firebaseio.com/chat1.json"
+
+                st.title("💬 Chatbot Firebase + Streamlit")
+
+                # session chat
+                if "messages" not in st.session_state:
+                    st.session_state.messages = []
+
+                # fungsi kirim pesan ke firebase
+                def send_message(user, text):
+                    data = {
+                        "user": user,
+                        "message": text,
+                        "time": time.time()
+                    }
+
+                    requests.post(FIREBASE_URL, json=data)
+
+
+                # fungsi ambil pesan
+                def get_messages():
+
+                    response = requests.get(FIREBASE_URL)
+
+                    if response.status_code == 200 and response.json() != None:
+                        data = response.json()
+                        return list(data.values())
+
+                    return []
+
+
+                # input nama
+                username = st.text_input("Nama Anda")
+
+                # tampilkan pesan
+                messages = get_messages()
+
+                for msg in messages:
+                    st.write(f"**{msg['user']}** : {msg['message']}")
+
+                # input chat
+                chat = st.text_input("Tulis pesan")
+                if st.button("Kirim"):
+                    if username and chat:
+                        send_message(username, chat)
+                        st.rerun()
+            
+        with bagian[2]:
+            pdf_display = '<iframe src="https://drive.google.com/file/d/1qZ_Fu1jbqxo9_xx38G2u2CxflpoPP4NQ/preview" width="100%" height="800px" allow="autoplay"></iframe>'
+    
+            # Menampilkan ke Streamlit
+            st.markdown(pdf_display, unsafe_allow_html=True)
+
+def hasilnya():
+    st.title("Upload Jawaban Tulisan Tangan")
+    nama = st.text_input("Nama")
+    nim = st.text_input("NIM")
+
+    foto = st.camera_input("Foto Jawaban")
+
+    if st.button("Upload"):
+
+        if foto is not None:
+
+            url = "https://api.cloudinary.com/v1_1/ikip-siliwangi/image/upload"
+
+            files = {"file": foto.getvalue()}
+
+            data = {
+                "upload_preset": "upload_jawaban",
+                "public_id": f"{nama}_{nim}"
+            }
+
+            response = requests.post(url, files=files, data=data)
+
+            result = response.json()
+
+            if "secure_url" in result:
+                st.success("Upload berhasil")
+                st.write(result["secure_url"])
+            else:
+                st.error("Upload gagal")
+                st.write(result)
 #==========Materi++++++
 
 if st.session_state['kumpulan']['pendahuluan']:
     kover()
 if st.session_state['kumpulan']['pertemuan1']:
     materi1()
-
-
+if st.session_state['kumpulan']['pertemuan2']:
+    materi2()
+if st.session_state['kumpulan']['hasil']:
+    hasilnya()
 #===========Kontrol++++++
 
 if st.sidebar.button("Pendahuluan"):
-    st.session_state['kumpulan'] = {'pendahuluan':True,'pertemuan1':False,
+    st.session_state['kumpulan'] = {'pendahuluan':True,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False}
     st.rerun()
 
 if st.sidebar.button("Pertemuan 1"):
-    st.session_state['kumpulan'] = {'pendahuluan':False,'pertemuan1':True,
+    st.session_state['kumpulan'] = {'pendahuluan':False,'hasil':False,'pertemuan1':True,
                         'pertemuan2':False,'pertemuan3':False}
     st.rerun()
-
-
-
-
-
+if st.sidebar.button("Pertemuan 2"):
+    st.session_state['kumpulan'] = {'pendahuluan':False,'hasil':False,'pertemuan1':False,
+                        'pertemuan2':True,'pertemuan3':False}
+    st.rerun()
+st.sidebar.markdown("---")
+if st.sidebar.button("Upload file hasil"):
+    st.session_state['kumpulan'] = {'pendahuluan':False,'hasil':True,'pertemuan1':False,
+                        'pertemuan2':False,'pertemuan3':False}
+    st.rerun()
