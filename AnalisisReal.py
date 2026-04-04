@@ -5,7 +5,7 @@ from datetime import datetime
 
 st.set_page_config(layout="wide")
 if 'kumpulan' not in st.session_state:
-    st.session_state['kumpulan'] = {'pendahuluan':True,'hasil':False,'pertemuan1':False,
+    st.session_state['kumpulan'] = {'pendahuluan':True,'catatan':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False}
 
 #======definisi+++++++++
@@ -2010,7 +2010,12 @@ div[data-testid="stTextArea"] textarea {
                     if username and chat:
                         send_message(username, chat)
                         st.rerun()
-            
+            st.markdown("---")
+            tulisanHTML11 = """
+        <iframe src=' https://martin-bernard26.github.io/simulasiCauchy/tulisan.html' style="width:100%; height:1500px; border:none;">
+        </iframe>
+           """
+            st.components.v1.html(tulisanHTML11,height=1000)
         with bagian[2]:
             pdf_display = '<iframe src="https://drive.google.com/file/d/1qZ_Fu1jbqxo9_xx38G2u2CxflpoPP4NQ/preview" width="100%" height="800px" allow="autoplay"></iframe>'
     
@@ -2048,7 +2053,7 @@ def hasilnya():
                 st.error("Upload gagal")
                 st.write(result)
 def materi3():
-    menu1 = st.tabs(['Test Diagnosa','Materi','Latihan'])
+    menu1 = st.tabs(['Test Diagnosa','Materi','Latihan','catatan (Aksioma Peano)'])
     with menu1[1]:
         tulisanHTML8 = """
         <iframe src=' https://martin-bernard26.github.io/simulasiCauchy/pertemuan3.html' style="width:100%; height:1500px; border:none;">
@@ -2067,6 +2072,125 @@ def materi3():
         </iframe>
            """
         st.components.v1.html(tulisanHTML9,height=1000)
+        st.markdown("---")
+        tulisanHTML11 = """
+        <iframe src=' https://martin-bernard26.github.io/simulasiCauchy/tulisan.html' style="width:100%; height:1500px; border:none;">
+        </iframe>
+           """
+        st.components.v1.html(tulisanHTML11,height=1000)
+    with menu1[3]:
+        st.markdown("""
+### Mengapa $1 + 1 = 2$ dalam Analisis Riil?
+
+Dalam analisis riil dan sistem bilangan formal, pernyataan $1 + 1 = 2$ bukanlah sekadar asumsi umum, melainkan hasil logis yang diturunkan dari **Aksioma Peano**.
+
+#### 1. Definisi Dasar (Penerus)
+Dalam sistem ini, setiap bilangan asli memiliki "penerus" (*successor*), yang dilambangkan dengan $S(n)$. Secara definisi:
+*   $2$ adalah penerus dari $1$, sehingga: **$2 = S(1)$**.
+
+#### 2. Aturan Penjumlahan
+Operasi penjumlahan didefinisikan secara rekursif. Salah satu aturan dasarnya adalah:
+*   $a + S(b) = S(a + b)$
+
+#### 3. Langkah Pembuktian
+Untuk membuktikan $1 + 1 = 2$, kita substitusikan nilai-nilainya:
+
+1.  Kita tahu bahwa $1$ adalah penerus dari $0$, atau bisa ditulis $1 = S(0)$.
+2.  Maka, $1 + 1$ dapat ditulis sebagai $1 + S(0)$.
+3.  Menggunakan aturan penjumlahan di atas:
+    $$1 + S(0) = S(1 + 0)$$
+4.  Karena bilangan apa pun ditambah $0$ adalah bilangan itu sendiri ($1 + 0 = 1$), maka:
+    $$S(1 + 0) = S(1)$$
+5.  Karena secara definisi $S(1) = 2$, maka:
+    **$1 + 1 = 2$**
+
+### Kesimpulan
+Secara matematis, $1 + 1 = 2$ adalah benar karena **2 didefinisikan sebagai simbol untuk penerus dari bilangan 1** dalam urutan logis bilangan asli.
+
+        """)
+
+def pendapat():
+    menu2 = st.tabs(['Archimedian','Bernouli'])
+    with menu2[0]:
+        st.markdown('''
+        ### Sifat Archimedes (Archimedean Property)
+
+Sifat ini merupakan salah satu pilar penting dalam analisis riil yang menghubungkan bilangan asli dengan bilangan riil.
+
+#### 1. Pernyataan Formal
+Untuk setiap bilangan riil $x \in \mathbb{R}$, selalu terdapat bilangan asli $n \in \mathbb{N}$ sedemikian sehingga:
+$$n > x$$
+
+#### 2. Bentuk Alternatif (Versi "Kecil")
+Sifat ini juga sering dinyatakan untuk menunjukkan adanya bilangan yang sangat kecil:
+Untuk setiap $\\varepsilon > 0$ (sekecil apa pun), selalu terdapat $n \in \mathbb{N}$ sedemikian sehingga:
+$$\\frac{1}{n} < \\varepsilon$$
+
+#### 3. Mengapa Ini Penting?
+Tanpa sifat ini, struktur matematika kita akan berbeda. Sifat Archimedes menjamin bahwa:
+*   **Tidak ada bilangan riil terbesar:** Sebesar apa pun angka yang kamu bayangkan, kamu selalu bisa menambahkannya dengan 1.
+*   **Kekonvergenan:** Kita bisa membuktikan bahwa limit dari $\\frac{1}{n}$ adalah $0$ saat $n$ menuju tak hingga.
+*   **Kerapatan Bilangan Rasional:** Sifat ini digunakan untuk membuktikan bahwa di antara dua bilangan riil sembarang, selalu ada bilangan rasional (Sifat Kerapatan).
+
+#### 4. Inti Analisis
+Sifat ini sebenarnya adalah konsekuensi dari **Sifat Kelengkapan** (*Completeness Property*) dari bilangan riil. Jika $\mathbb{N}$ memiliki batas atas, maka ia
+harus memiliki *Supremum* (batas atas terkecil). Namun, dalam sistem bilangan riil, kita bisa membuktikan bahwa asumsi adanya batas atas untuk $\mathbb{N}$ akan
+berujung pada kontradiksi.
+        ''')
+    with menu2[1]:
+        st.markdown('''
+        # Analisis Real: Ketaksamaan Bernoulli
+
+Dalam analisis real, **Ketaksamaan Bernoulli** adalah instrumen fundamental yang digunakan untuk memberikan estimasi batas bawah dari perpangkatan bentuk $(1+x)$. Teorema ini sangat krusial dalam membuktikan kekonvergenan barisan dan sifat-sifat fungsi eksponensial.
+
+---
+
+### 1. Pernyataan Teorema
+Untuk setiap bilangan riil $x > -1$ dan setiap bilangan asli $n \in \mathbb{N}$, berlaku:
+
+$$(1 + x)^n \geq 1 + nx$$
+
+### 2. Analisis Kondisi
+*   **Kasus $x = 0$:** Kedua ruas bernilai $1$, sehingga terjadi kesamaan (ekualitas).
+*   **Kasus $n = 1$:** Kedua ruas bernilai $1+x$, sehingga terjadi kesamaan.
+*   **Ketaksamaan Ketat:** Jika $x \neq 0$ dan $n > 1$, maka berlaku $(1 + x)^n > 1 + nx$.
+*   **Batasan $x > -1$:** Syarat ini wajib dipenuhi agar $(1+x)$ selalu bernilai positif, sehingga tanda ketaksamaan tidak berbalik saat dilakukan operasi perkalian dalam pembuktian.
+
+---
+
+### 3. Pembuktian (Metode Induksi Matematika)
+
+**Langkah Basis:**
+Untuk $n = 1$:
+$(1 + x)^1 \geq 1 + (1)x \implies 1 + x \geq 1 + x$ (Pernyataan benar).
+
+**Langkah Induksi:**
+Asumsikan pernyataan benar untuk $n = k$, yaitu:
+$$(1 + x)^k \geq 1 + kx$$
+
+Kita harus membuktikan bahwa pernyataan juga benar untuk $n = k + 1$. Kalikan kedua ruas dengan $(1 + x)$. Karena $x > -1$, maka $(1 + x) > 0$:
+
+$$(1 + x)^k \cdot (1 + x) \geq (1 + kx) \cdot (1 + x)$$
+$$(1 + x)^{k+1} \geq 1 + x + kx + kx^2$$
+$$(1 + x)^{k+1} \geq 1 + (k + 1)x + kx^2$$
+
+Karena $kx^2 \geq 0$ untuk semua $k \in \mathbb{N}$ dan $x \in \mathbb{R}$, maka:
+$$1 + (k + 1)x + kx^2 \geq 1 + (k + 1)x$$
+
+Berdasarkan sifat transitif, maka:
+$$(1 + x)^{k+1} \geq 1 + (k + 1)x$$
+**Q.E.D.**
+
+---
+
+### 4. Relevansi dalam Analisis Real
+
+Ketaksamaan ini bukan sekadar angka, melainkan "jembatan" untuk membuktikan konsep-konsep limit yang lebih kompleks:
+
+1.  **Limit Barisan Geometri:** Digunakan untuk membuktikan bahwa $\lim_{n \to \infty} r^n = 0$ jika $|r| < 1$.
+2.  **Definisi Bilangan $e$:** Membantu menunjukkan bahwa barisan $a_{n} = (1 + \\frac{1}{n})^n$ adalah barisan yang monoton naik dan terbatas.
+3.  **Kekonvergenan:** Memberikan cara cepat untuk membandingkan barisan eksponensial dengan barisan linier yang lebih sederhana.
+        ''')
 #==========Materi++++++
 
 if st.session_state['kumpulan']['pendahuluan']:
@@ -2079,27 +2203,33 @@ if st.session_state['kumpulan']['pertemuan3']:
     materi3()
 if st.session_state['kumpulan']['hasil']:
     hasilnya()
+if st.session_state['kumpulan']['catatan']:
+    pendapat()
 #===========Kontrol++++++
 
 if st.sidebar.button("Pendahuluan"):
-    st.session_state['kumpulan'] = {'pendahuluan':True,'hasil':False,'pertemuan1':False,
+    st.session_state['kumpulan'] = {'pendahuluan':True,'catatan':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False,'pertemuan4':False}
     st.rerun()
-
+if st.sidebar.button("Catatan Penting"):
+    st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':True,'hasil':False,'pertemuan1':False,
+                        'pertemuan2':False,'pertemuan3':False,'pertemuan4':False}
+    st.rerun()
+st.sidebar.markdown("---")
 if st.sidebar.button("Pertemuan 1"):
-    st.session_state['kumpulan'] = {'pendahuluan':False,'hasil':False,'pertemuan1':True,
+    st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'hasil':False,'pertemuan1':True,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False}
     st.rerun()
 if st.sidebar.button("Pertemuan 2"):
-    st.session_state['kumpulan'] = {'pendahuluan':False,'hasil':False,'pertemuan1':False,
+    st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':True,'pertemuan3':False, 'pertemuan4':False}
     st.rerun()
 if st.sidebar.button("Pertemuan 3"):
-    st.session_state['kumpulan'] = {'pendahuluan':False,'hasil':False,'pertemuan1':False,
+    st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':True, 'pertemuan4':False}
     st.rerun()
 st.sidebar.markdown("---")
 if st.sidebar.button("Upload file hasil"):
-    st.session_state['kumpulan'] = {'pendahuluan':False,'hasil':True,'pertemuan1':False,
+    st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'hasil':True,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False}
     st.rerun()
