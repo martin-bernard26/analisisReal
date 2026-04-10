@@ -6,7 +6,7 @@ from datetime import datetime
 st.set_page_config(layout="wide")
 if 'kumpulan' not in st.session_state:
     st.session_state['kumpulan'] = {'pendahuluan':True,'catatan':False,'hasil':False,'pertemuan1':False,
-                        'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False}
+                        'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False}
 
 #======definisi+++++++++
 
@@ -2053,19 +2053,19 @@ def hasilnya():
                 st.error("Upload gagal")
                 st.write(result)
 def materi3():
-    menu1 = st.tabs(['Test Diagnosa','Materi','Latihan','catatan (Aksioma Peano)'])
+    menu1 = st.tabs(['Test Diagnosa','Materi','Latihan','catatan (Aksioma Peano)','praktek koding'])
     with menu1[1]:
         tulisanHTML8 = """
-        <iframe src='https://martin-bernard26.github.io/simulasiCauchy/pertemuan3.html' style="width:100%; height:5000px; border:none;">
+        <iframe src=' https://martin-bernard26.github.io/simulasiCauchy/pertemuan3.html' style="width:100%; height:1500px; border:none;">
         </iframe>
            """
-        st.components.v1.html(tulisanHTML8,height=5000)
+        st.components.v1.html(tulisanHTML8,height=1000)
     with menu1[0]:
         tulisanHTML7 = """
-        <iframe src='https://martin-bernard26.github.io/simulasiCauchy/testDiag3.html' style="width:100%; height:5000px; border:none;">
+        <iframe src='https://martin-bernard26.github.io/simulasiCauchy/testDiag3.html' style="width:100%; height:1500px; border:none;">
         </iframe>
            """
-        st.components.v1.html(tulisanHTML7,height=5000)
+        st.components.v1.html(tulisanHTML7,height=1000)
     with menu1[2]:
         tulisanHTML9 = """
         <iframe src='https://martin-bernard26.github.io/simulasiCauchy/latihanAkar.html' style="width:100%; height:1500px; border:none;">
@@ -2074,7 +2074,7 @@ def materi3():
         st.components.v1.html(tulisanHTML9,height=1000)
         st.markdown("---")
         tulisanHTML11 = """
-        <iframe src=' https://martin-bernard26.github.io/simulasiCauchy/tulisan.html' style="width:100%; height:1500px; border:none;">
+        <iframe src='https://martin-bernard26.github.io/simulasiCauchy/tulisan.html' style="width:100%; height:1500px; border:none;">
         </iframe>
            """
         st.components.v1.html(tulisanHTML11,height=1000)
@@ -2108,6 +2108,11 @@ Untuk membuktikan $1 + 1 = 2$, kita substitusikan nilai-nilainya:
 Secara matematis, $1 + 1 = 2$ adalah benar karena **2 didefinisikan sebagai simbol untuk penerus dari bilangan 1** dalam urutan logis bilangan asli.
 
         """)
+    with menu1[4]:
+        tulisanHTML12 = """
+        <iframe src="https://trinket.io/embed/python3/055c60f8a0" width="100%" height="1000" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+           """
+        st.components.v1.html(tulisanHTML12,height=5000)
 
 def pendapat():
     menu2 = st.tabs(['Archimedian','Bernouli'])
@@ -2153,7 +2158,7 @@ $$(1 + x)^n \geq 1 + nx$$
 ### 2. Analisis Kondisi
 *   **Kasus $x = 0$:** Kedua ruas bernilai $1$, sehingga terjadi kesamaan (ekualitas).
 *   **Kasus $n = 1$:** Kedua ruas bernilai $1+x$, sehingga terjadi kesamaan.
-*   **Ketaksamaan Ketat:** Jika $x \neq 0$ dan $n > 1$, maka berlaku $(1 + x)^n > 1 + nx$.
+*   **Ketaksamaan Ketat:** Jika $x \\neq 0$ dan $n > 1$, maka berlaku $(1 + x)^n > 1 + nx$.
 *   **Batasan $x > -1$:** Syarat ini wajib dipenuhi agar $(1+x)$ selalu bernilai positif, sehingga tanda ketaksamaan tidak berbalik saat dilakukan operasi perkalian dalam pembuktian.
 
 ---
@@ -2191,6 +2196,36 @@ Ketaksamaan ini bukan sekadar angka, melainkan "jembatan" untuk membuktikan kons
 2.  **Definisi Bilangan $e$:** Membantu menunjukkan bahwa barisan $a_{n} = (1 + \\frac{1}{n})^n$ adalah barisan yang monoton naik dan terbatas.
 3.  **Kekonvergenan:** Memberikan cara cepat untuk membandingkan barisan eksponensial dengan barisan linier yang lebih sederhana.
         ''')
+
+def materi4():
+    menu1 = st.tabs(["Test Awal","Materi","Latihan","Tugas"])
+    with menu1[1]:
+        tulisanHTML1 = """
+        <iframe src="https://martin-bernard26.github.io/simulasiCauchy/pertemuan5.html" width="100%" height="1000" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+           """
+        st.components.v1.html(tulisanHTML1,height=1000)
+        st.write("<h4>Media Geogebra<h4>",unsafe_allow_html=True)
+        tulisanHTML = """
+        <iframe src="https://martin-bernard26.github.io/simulasiCauchy/geogebra.html" width="100%" height="1000" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+           """
+        st.components.v1.html(tulisanHTML,height=1000)
+    with menu1[0]:
+        tulisanHTML = """
+        <iframe src="https://martin-bernard26.github.io/simulasiCauchy/testAwal4.html" width="100%" height="1000" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+           """
+        st.components.v1.html(tulisanHTML,height=5000)
+        st.write("<h4>Media Geogebra<h4>",unsafe_allow_html=True)
+        
+    with menu1[2]:
+        tulisanHTML = """
+        <iframe src="https://martin-bernard26.github.io/simulasiCauchy/latihan4.html" width="100%" height="1000" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+           """
+        st.components.v1.html(tulisanHTML,height=1000)
+        st.write("<h4>Media Geogebra<h4>",unsafe_allow_html=True)
+        tulisanHTML2 = """
+        <iframe src="https://martin-bernard26.github.io/simulasiCauchy/geogebra.html" width="100%" height="1000" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+           """
+        st.components.v1.html(tulisanHTML2,height=1000)
 #==========Materi++++++
 
 if st.session_state['kumpulan']['pendahuluan']:
@@ -2205,31 +2240,37 @@ if st.session_state['kumpulan']['hasil']:
     hasilnya()
 if st.session_state['kumpulan']['catatan']:
     pendapat()
+if st.session_state['kumpulan']['pertemuan4']:
+    materi4()
 #===========Kontrol++++++
 
 if st.sidebar.button("Pendahuluan"):
     st.session_state['kumpulan'] = {'pendahuluan':True,'catatan':False,'hasil':False,'pertemuan1':False,
-                        'pertemuan2':False,'pertemuan3':False,'pertemuan4':False}
+                        'pertemuan2':False,'pertemuan3':False,'pertemuan4':False, 'pertemuan5':False}
     st.rerun()
 if st.sidebar.button("Catatan Penting"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':True,'hasil':False,'pertemuan1':False,
-                        'pertemuan2':False,'pertemuan3':False,'pertemuan4':False}
+                        'pertemuan2':False,'pertemuan3':False,'pertemuan4':False,'pertemuan5':False}
     st.rerun()
 st.sidebar.markdown("---")
 if st.sidebar.button("Pertemuan 1"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'hasil':False,'pertemuan1':True,
-                        'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False}
+                        'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False}
     st.rerun()
 if st.sidebar.button("Pertemuan 2"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'hasil':False,'pertemuan1':False,
-                        'pertemuan2':True,'pertemuan3':False, 'pertemuan4':False}
+                        'pertemuan2':True,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False}
     st.rerun()
 if st.sidebar.button("Pertemuan 3"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'hasil':False,'pertemuan1':False,
-                        'pertemuan2':False,'pertemuan3':True, 'pertemuan4':False}
+                        'pertemuan2':False,'pertemuan3':True, 'pertemuan4':False,'pertemuan5':False}
+    st.rerun()
+if st.sidebar.button("Pertemuan 4"):
+    st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'hasil':False,'pertemuan1':False,
+                        'pertemuan2':False,'pertemuan3':False, 'pertemuan4':True,'pertemuan5':False}
     st.rerun()
 st.sidebar.markdown("---")
 if st.sidebar.button("Upload file hasil"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'hasil':True,'pertemuan1':False,
-                        'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False}
+                        'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False}
     st.rerun()
