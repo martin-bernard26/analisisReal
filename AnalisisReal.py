@@ -2226,6 +2226,16 @@ def materi4():
         <iframe src="https://martin-bernard26.github.io/simulasiCauchy/geogebra.html" width="100%" height="1000" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
            """
         st.components.v1.html(tulisanHTML2,height=1000)
+    with menu1[3]:
+        tulisanHTML = """
+        <iframe src="https://martin-bernard26.github.io/simulasiCauchy/soal4.html" width="100%" height="1000" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+           """
+        st.components.v1.html(tulisanHTML,height=1000)
+        st.write("<h4>Kirimkan Tugas<h4>",unsafe_allow_html=True)
+        tulisanHTML2 = """
+        <iframe src="https://martin-bernard26.github.io/simulasiCauchy/postest4.html" width="100%" height="500" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+           """
+        st.components.v1.html(tulisanHTML2,height=500)
 #==========Materi++++++
 
 if st.session_state['kumpulan']['pendahuluan']:
