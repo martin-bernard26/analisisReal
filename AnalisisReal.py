@@ -2059,25 +2059,25 @@ def materi3():
         <iframe src=' https://martin-bernard26.github.io/simulasiCauchy/pertemuan3.html' style="width:100%; height:1500px; border:none;">
         </iframe>
            """
-        st.components.v1.html(tulisanHTML8,height=2000)
+        st.components.v1.html(tulisanHTML8,height=1500)
     with menu1[0]:
         tulisanHTML7 = """
         <iframe src='https://martin-bernard26.github.io/simulasiCauchy/testDiag3.html' style="width:100%; height:1500px; border:none;">
         </iframe>
            """
-        st.components.v1.html(tulisanHTML7,height=2000)
+        st.components.v1.html(tulisanHTML7,height=1500)
     with menu1[2]:
         tulisanHTML9 = """
         <iframe src='https://martin-bernard26.github.io/simulasiCauchy/latihanAkar.html' style="width:100%; height:1500px; border:none;">
         </iframe>
            """
-        st.components.v1.html(tulisanHTML9,height=2000)
+        st.components.v1.html(tulisanHTML9,height=1500)
         st.markdown("---")
         tulisanHTML11 = """
         <iframe src='https://martin-bernard26.github.io/simulasiCauchy/tulisan.html' style="width:100%; height:1500px; border:none;">
         </iframe>
            """
-        st.components.v1.html(tulisanHTML11,height=2000)
+        st.components.v1.html(tulisanHTML11,height=1500)
     with menu1[3]:
         st.markdown("""
 ### Mengapa $1 + 1 = 2$ dalam Analisis Riil?
