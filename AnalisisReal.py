@@ -7,7 +7,7 @@ st.set_page_config(layout="wide")
 if 'kumpulan' not in st.session_state:
     st.session_state['kumpulan'] = {'pendahuluan':True,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
-                                    'pertemuan6':False,'pertemuan7':False}
+                                    'pertemuan6':False,'pertemuan7':False,'pertemuan8':False}
 
 #======definisi+++++++++
 
@@ -2295,6 +2295,39 @@ def ujianTengah():
         <iframe src="https://martin-bernard26.github.io/simulasiCauchy/UTS.html" width="100%" height="500" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
            """
     st.components.v1.html(tulisanHTML,height=500)
+
+def materi7():
+    menu = st.tabs(['Test Diagnosa','Video Pembelajaran','Materi','Latihan'])
+    with menu[0]:
+        tulisanHTML1 = """
+        <iframe src="https://martin-bernard26.github.io/simulasiCauchy/pertemuan7.html" width="100%" height="1000" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+           """
+        st.components.v1.html(tulisanHTML1,height=1000)
+    with menu[1]:
+        st.markdown("---")
+        st.latex("Pembuktian\\;\\Sigma_{i=1}^{n}i=\\frac{n(n+1)}{2}")
+        st.markdown("---")
+        st.video("https://youtu.be/CVAr9FVCxpc")
+        st.markdown("---")
+        st.latex("Pembuktian\\;bahwa\\;x^{3}-x\\;habis\\;dibagi\\;6")
+        st.markdown("---")
+        st.video("https://youtu.be/55fKhNtBhLI")
+        st.markdown("---")
+        st.latex("Pembuktian:\\;n!>2^{n}.\\;untuk\\;n\\geq{3}")
+        st.markdown("---")
+        st.video("https://youtu.be/DWRX9ulB9Io")
+    with menu[2]:
+        tulisanHTML1 = """
+        <iframe src="https://martin-bernard26.github.io/simulasiCauchy/induksi.html" width="100%" height="1000" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+           """
+        st.components.v1.html(tulisanHTML1,height=1000)
+    with menu[3]:
+        st.write("Dari test diagnosa selesaikan dengan menggunakan tulis tangan lalu dikirimkan")
+        tulisanHTML1 = """
+        <iframe src="https://martin-bernard26.github.io/simulasiCauchy/tugasInduksi.html" width="100%" height="500" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+           """
+        st.components.v1.html(tulisanHTML1,height=500)
+        
 #==========Materi++++++
 
 if st.session_state['kumpulan']['pendahuluan']:
@@ -2319,64 +2352,72 @@ if st.session_state['kumpulan']['buku']:
     bahanajar()
 if st.session_state['kumpulan']['pertemuan7']:
     ujianTengah()
+if st.session_state['kumpulan']['pertemuan8']:
+    materi7()
 #===========Kontrol++++++
 
 if st.sidebar.button("Pendahuluan"):
     st.session_state['kumpulan'] = {'pendahuluan':True,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False,'pertemuan4':False, 'pertemuan5':False,
-                                    'pertemuan6':False,'pertemuan7':False}
+                                    'pertemuan6':False,'pertemuan7':False,'pertemuan8':False}
     st.rerun()
 if st.sidebar.button("Catatan Penting"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':True,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False,'pertemuan4':False,'pertemuan5':False,
-                                    'pertemuan6':False,'pertemuan7':False}
+                                    'pertemuan6':False,'pertemuan7':False,'pertemuan8':False}
     st.rerun()
 if st.sidebar.button("Buku Referensi"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':True,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False,'pertemuan4':False,'pertemuan5':False,
-                                    'pertemuan6':False,'pertemuan7':False}
+                                    'pertemuan6':False,'pertemuan7':False,'pertemuan8':False}
     st.rerun()
 st.sidebar.markdown("---")
 if st.sidebar.button("Pertemuan 1"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':True,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
-                                    'pertemuan6':False,'pertemuan7':False}
+                                    'pertemuan6':False,'pertemuan7':False,'pertemuan8':False}
     st.rerun()
 if st.sidebar.button("Pertemuan 2"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan':False,
                         'pertemuan2':True,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
-                                    'pertemuan6':False,'pertemuan7':False}
+                                    'pertemuan6':False,'pertemuan7':False,'pertemuan8':False}
     st.rerun()
 if st.sidebar.button("Pertemuan 3"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':True, 'pertemuan4':False,'pertemuan5':False,
-                                    'pertemuan6':False,'pertemuan7':False}
+                                    'pertemuan6':False,'pertemuan7':False,'pertemuan8':False}
     st.rerun()
 if st.sidebar.button("Pertemuan 4"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':True,'pertemuan5':False,
-                                    'pertemuan6':False,'pertemuan7':False}
+                                    'pertemuan6':False,'pertemuan7':False,'pertemuan8':False}
     st.rerun()
 
 if st.sidebar.button("Pertemuan 5"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':True,
-                                    'pertemuan6':False,'pertemuan7':False}
+                                    'pertemuan6':False,'pertemuan7':False,'pertemuan8':False}
     st.rerun()
 if st.sidebar.button("Pertemuan 6"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
-                                    'pertemuan6':True}
+                                    'pertemuan6':True,'pertemuan7':False,'pertemuan8':False}
     st.rerun()
 st.sidebar.markdown("---")
 if st.sidebar.button("Ujian Tengah Semester"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
-                                    'pertemuan6':False,'pertemuan7':True}
+                                    'pertemuan6':False,'pertemuan7':True,'pertemuan8':False}
+    st.rerun()
+st.sidebar.markdown("---")
+if st.sidebar.button("Pertemuan 7"):
+    st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
+                        'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
+                                    'pertemuan6':False,'pertemuan7':False,'pertemuan8':True}
     st.rerun()
 st.sidebar.markdown("---")
 if st.sidebar.button("Upload file hasil"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':True,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
-                                    'pertemuan6':False,'pertemuan7':False}
+                                    'pertemuan6':False,'pertemuan7':False,'pertemuan8':False}
     st.rerun()
