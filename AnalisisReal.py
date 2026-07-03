@@ -8,7 +8,7 @@ if 'kumpulan' not in st.session_state:
     st.session_state['kumpulan'] = {'pendahuluan':True,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
                                     'pertemuan6':False,'pertemuan7':False,'pertemuan8':False,'pertemuan9':False,
-                                    'pertemuan10':False,'pertemuan11':False}
+                                    'pertemuan10':False,'pertemuan11':False,'pertemuan12':False}
 
 #======definisi+++++++++
 
@@ -2387,6 +2387,16 @@ def materi10():
         pass
     with menu[3]:
         pass
+
+def materi11():
+    tulisanHTML1 = """
+        <iframe src="https://drive.google.com/file/d/1AVA1PUM0Km8tL8CBv6lCoy201KxU5uKy/preview" width="100%" height="1000" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+           """
+    st.components.v1.html(tulisanHTML1,height=1000)
+    tulisanHTML1 = """
+        <iframe src="https://martin-bernard26.github.io/simulasiCauchy/UASARB1.html" width="100%" height="1000" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+           """
+    st.components.v1.html(tulisanHTML1,height=1000)
         
 #==========Materi++++++
 
@@ -2420,95 +2430,104 @@ if st.session_state['kumpulan']['pertemuan10']:
     materi9()
 if st.session_state['kumpulan']['pertemuan11']:
     materi10()
+if st.session_state['kumpulan']['pertemuan12']:
+    materi11()
 #===========Kontrol++++++
 
 if st.sidebar.button("Pendahuluan"):
     st.session_state['kumpulan'] = {'pendahuluan':True,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False,'pertemuan4':False, 'pertemuan5':False,
                                     'pertemuan6':False,'pertemuan7':False,'pertemuan8':False,'pertemuan9':False,
-                                    'pertemuan10':False,'pertemuan11':False}
+                                    'pertemuan10':False,'pertemuan11':False,'pertemuan12':False}
     st.rerun()
 if st.sidebar.button("Catatan Penting"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':True,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False,'pertemuan4':False,'pertemuan5':False,
                                     'pertemuan6':False,'pertemuan7':False,'pertemuan8':False,'pertemuan9':False,
-                                    'pertemuan10':False,'pertemuan11':False}
+                                    'pertemuan10':False,'pertemuan11':False,'pertemuan12':False}
     st.rerun()
 if st.sidebar.button("Buku Referensi"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':True,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False,'pertemuan4':False,'pertemuan5':False,
                                     'pertemuan6':False,'pertemuan7':False,'pertemuan8':False,'pertemuan9':False,
-                                    'pertemuan10':False,'pertemuan11':False}
+                                    'pertemuan10':False,'pertemuan11':False,'pertemuan12':False}
     st.rerun()
 st.sidebar.markdown("---")
 if st.sidebar.button("Pertemuan 1"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':True,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
                                     'pertemuan6':False,'pertemuan7':False,'pertemuan8':False,'pertemuan9':False,
-                                    'pertemuan10':False,'pertemuan11':False}
+                                    'pertemuan10':False,'pertemuan11':False,'pertemuan12':False}
     st.rerun()
 if st.sidebar.button("Pertemuan 2"):
-    st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan':False,
+    st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':True,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
                                     'pertemuan6':False,'pertemuan7':False,'pertemuan8':False,'pertemuan9':False,
-                                    'pertemuan10':False,'pertemuan11':False}
+                                    'pertemuan10':False,'pertemuan11':False,'pertemuan12':False}
     st.rerun()
 if st.sidebar.button("Pertemuan 3"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':True, 'pertemuan4':False,'pertemuan5':False,
                                     'pertemuan6':False,'pertemuan7':False,'pertemuan8':False,'pertemuan9':False,
-                                    'pertemuan10':False,'pertemuan11':False}
+                                    'pertemuan10':False,'pertemuan11':False,'pertemuan12':False}
     st.rerun()
 if st.sidebar.button("Pertemuan 4"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':True,'pertemuan5':False,
                                     'pertemuan6':False,'pertemuan7':False,'pertemuan8':False,'pertemuan9':False,
-                                    'pertemuan10':False,'pertemuan11':False}
+                                    'pertemuan10':False,'pertemuan11':False,'pertemuan12':False}
     st.rerun()
 
 if st.sidebar.button("Pertemuan 5"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':True,
                                     'pertemuan6':False,'pertemuan7':False,'pertemuan8':False,'pertemuan9':False,
-                                    'pertemuan10':False,'pertemuan11':False}
+                                    'pertemuan10':False,'pertemuan11':False,'pertemuan12':False}
     st.rerun()
 if st.sidebar.button("Pertemuan 6"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
                                     'pertemuan6':True,'pertemuan7':False,'pertemuan8':False,'pertemuan9':False,
-                                    'pertemuan10':False,'pertemuan11':False}
+                                    'pertemuan10':False,'pertemuan11':False,'pertemuan12':False}
     st.rerun()
 st.sidebar.markdown("---")
 if st.sidebar.button("Ujian Tengah Semester"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
                                     'pertemuan6':False,'pertemuan7':True,'pertemuan8':False,'pertemuan9':False,
-                                    'pertemuan10':False,'pertemuan11':False}
+                                    'pertemuan10':False,'pertemuan11':False,'pertemuan12':False}
     st.rerun()
 st.sidebar.markdown("---")
 if st.sidebar.button("Pertemuan 7"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
                                     'pertemuan6':False,'pertemuan7':False,'pertemuan8':True,'pertemuan9':False,
-                                    'pertemuan10':False,'pertemuan11':False}
+                                    'pertemuan10':False,'pertemuan11':False,'pertemuan12':False}
     st.rerun()
 if st.sidebar.button("Pertemuan 8"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
                                     'pertemuan6':False,'pertemuan7':False,'pertemuan8':False,'pertemuan9':True,
-                                    'pertemuan10':False,'pertemuan11':False}
+                                    'pertemuan10':False,'pertemuan11':False,'pertemuan12':False}
     st.rerun()
 if st.sidebar.button("Pertemuan 9"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
                                     'pertemuan6':False,'pertemuan7':False,'pertemuan8':False,'pertemuan9':False,
-                                    'pertemuan10':True,'pertemuan11':False}
+                                    'pertemuan10':True,'pertemuan11':False,'pertemuan12':False}
     st.rerun()
 if st.sidebar.button("Pertemuan 10"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
                                     'pertemuan6':False,'pertemuan7':False,'pertemuan8':False,'pertemuan9':False,
-                                    'pertemuan10':False,'pertemuan11':True}
+                                    'pertemuan10':False,'pertemuan11':True,'pertemuan12':False}
+    st.rerun()
+st.sidebar.markdown("---")
+if st.sidebar.button("Ujian Akhir Semester"):
+    st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':False,'pertemuan1':False,
+                        'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
+                                    'pertemuan6':False,'pertemuan7':False,'pertemuan8':False,'pertemuan9':False,
+                                    'pertemuan10':False,'pertemuan11':False,'pertemuan12':True}
     st.rerun()
     
 st.sidebar.markdown("---")
@@ -2516,5 +2535,5 @@ if st.sidebar.button("Upload file hasil"):
     st.session_state['kumpulan'] = {'pendahuluan':False,'catatan':False,'buku':False,'hasil':True,'pertemuan1':False,
                         'pertemuan2':False,'pertemuan3':False, 'pertemuan4':False,'pertemuan5':False,
                                     'pertemuan6':False,'pertemuan7':False,'pertemuan8':False,'pertemuan9':False,
-                                    'pertemuan10':False,'pertemuan11':False}
+                                    'pertemuan10':False,'pertemuan11':False,'pertemuan12':False}
     st.rerun()
